@@ -1,22 +1,11 @@
 class TasksController < ApplicationController
-  def index
-    response.headers['Access-Control-Allow-Origin'] = "*"
-    dummy = {
-            title: 'Gitの使い方を覚えよう',
-            description: "チーム開発を円滑に進めるためにGitは超重要です。\n覚えましょう",
-            todos: [
-              {
-                id: 1,
-                text: 'このリンクを読む',
-                link: '#',
-                completed: false
-              }, {
-                id: 2,
-                text: 'この学習教材の第4章まで進める',
-                completed: true
-              }
-            ]
-          };
-    render json:dummy
+  def current
+    @task = Task.current_task
+    render json: @task.as_json(include: [:todos])
+  end
+  def update
+    @task = Task.find(params[:id])
+    @task.completed = params[:completed]
+    @task.save
   end
 end

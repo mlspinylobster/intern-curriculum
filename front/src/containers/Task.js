@@ -1,25 +1,22 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import TaskView from '../components/TaskView';
+import ModelTask from '../models/Task';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
+  return state.task;
+};
+
+const mapDispatchToProps = (dispatch) => {
   return {
-    title: state.task.title,
-    //    description: state.task.description
-    description: state.task.description
+    onCompleted: (id, completed) => {
+      ModelTask.patchTaskCompleted(dispatch, id, completed);
+    }
   };
 };
 
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//   return {
-//     onClick: () => {
-//       dispatch(setVisibilityFilter(ownProps.filter));
-//     }
-//   };
-// };
-
 const Task = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TaskView);
 
 export default Task;

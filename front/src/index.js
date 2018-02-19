@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import App from './components/App';
 import thunk from 'redux-thunk';
-import Task from './models/Task';
+import ModelTask from './models/Task';
 
 let store = createStore(
   reducers,
@@ -19,4 +19,4 @@ render(
   document.getElementById('root')
 );
 
-store.dispatch(Task.getTask);
+store.dispatch(ModelTask.getTask);

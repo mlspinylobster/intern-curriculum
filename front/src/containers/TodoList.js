@@ -1,17 +1,13 @@
 import { connect } from 'react-redux';
 import TodoListView from '../components/TodoListView';
-import { toggleTodo } from '../actions';
+import ModelTask from '../models/Task';
 
-const mapStateToProps = (state) => (
-  {
-    todos: state.task.todos
-  }
-);
+const mapStateToProps = (_, ownProps) => ownProps;
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTodoClick: id => {
-      dispatch(toggleTodo(id));
+    onCompletedChange: todo => {
+      ModelTask.patchCompleted(dispatch, todo);
     }
   };
 };

@@ -1,0 +1,7 @@
+vendor
+tmp
+test
+public
+log/*
+!log/.keep
+db/*.sqlite3

@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 const initialTask = {
   title: '',
   description: '',
+  isNextTaskPresent: false,
   todos: []
 };
 
